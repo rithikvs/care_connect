@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+
+    --primary: 174 72% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 30% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 10% 45%;
+
+    --accent: 174 60% 95%;
+    --accent-foreground: 174 60% 30%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 174 72% 46%;
+
+    --radius: 0.75rem;
+
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 210 20% 90% / 0.5;
+    --gradient-start: 174 72% 46%;
+    --gradient-end: 220 70% 50%;
+
+    --sidebar-background: 210 20% 98%;
+    --sidebar-foreground: 210 30% 20%;
+    --sidebar-primary: 174 72% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 94%;
+    --sidebar-accent-foreground: 210 30% 10%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 174 72% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.15;
+    /* Increased visibility as requested */
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-black/5 rounded-2xl shadow-xl p-5 md:p-8;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-navbar {
+    @apply bg-white/70 backdrop-blur-2xl border-b border-black/5;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
+  }
+
+  .gradient-btn {
+    @apply bg-gradient-to-r from-primary to-blue-500 text-primary-foreground font-semibold rounded-xl px-5 py-2.5 md:px-6 md:py-3 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:scale-105 active:scale-95 text-sm md:text-base inline-flex items-center justify-center;
+  }
+
+  .gradient-btn-outline {
+    @apply border-2 border-primary text-primary font-semibold rounded-xl px-5 py-2.5 md:px-6 md:py-3 transition-all duration-300 hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/15 text-sm md:text-base inline-flex items-center justify-center;
+  }
+
+  .float-label-input {
+    @apply w-full bg-secondary/50 border border-black/5 rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 text-sm md:text-base;
+  }
+
+  .priority-high {
+    @apply bg-destructive/20 text-destructive border border-destructive/30 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider;
+  }
+
+  .priority-normal {
+    @apply bg-success/20 text-success border border-success/30 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, hsl(174 72% 46% / 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+}
