@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://care-connect-tu0r.onrender.com/api';
 
 const getHeaders = () => {
     const token = localStorage.getItem('token');
@@ -37,7 +37,9 @@ export const api = {
     },
     patients: {
         getAll: async () => {
-            const res = await fetch(`${API_URL}/patients`);
+            const res = await fetch(`${API_URL}/patients`, {
+                headers: getHeaders(),
+            });
             return handleResponse(res);
         },
         create: async (data: any) => {
@@ -58,7 +60,9 @@ export const api = {
     },
     volunteers: {
         getAll: async () => {
-            const res = await fetch(`${API_URL}/volunteers`);
+            const res = await fetch(`${API_URL}/volunteers`, {
+                headers: getHeaders(),
+            });
             return handleResponse(res);
         },
         create: async (data: any) => {
